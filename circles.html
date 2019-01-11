@@ -7,7 +7,23 @@
     <script type="text/javascript" src="paper-full.js"></script>
     <!-- Define inline PaperScript associated with myCanvas -->
     <script type="text/paperscript" canvas="myCanvas">
+      var maxPoint = new Point(view.size.width, view.size.height);
+      var circlesArray = [];
 
+      function onKeyDown(event) {
+        var randomPoint = Point.random();
+        var point = maxPoint * randomPoint;
+        var newCircle = new Path.Circle(point, 500);
+        newCircle.fillColor = 'yellow';
+        circlesArray.push(newCircle);
+      }
+
+      function onFrame(event) {
+        circlesArray.forEach(function(elt) {
+          elt.fillColor.hue += 1;
+          elt.scale(.825);
+        })
+      }
     </script>
   </head>
   <body>
