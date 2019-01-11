@@ -184,10 +184,14 @@
       }
 
       function onFrame(event) {
-        circlesArray.forEach(function(elt) {
-          elt.fillColor.hue += 1;
-          elt.scale(.9);
-        })
+        for(var i = 0; i < circlesArray.length; i++) {
+          circlesArray[i].fillColor.hue += 1;
+          circlesArray[i].scale(.9);
+          if(circlesArray[i].area < 1){
+            circlesArray[i].remove(); // remove the circle from the canvas
+            circlesArray.splice(i, 1); // remove the circle from the array
+          }
+        }
       }
     </script>
   </head>
